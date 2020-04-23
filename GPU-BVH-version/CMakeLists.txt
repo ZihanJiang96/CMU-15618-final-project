@@ -12,6 +12,6 @@ cmake_minimum_required(VERSION 2.8)
 find_package(CUDA)
 
 # nvcc flags
-set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3 -arch compute_20)
+set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3 -arch compute_61)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 cuda_add_executable(smallpt smallpt.cu gpu.cu)
