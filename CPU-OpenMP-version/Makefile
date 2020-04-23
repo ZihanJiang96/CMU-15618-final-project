@@ -5,7 +5,7 @@
 
 # Select appropriate compiler.
 #CPP=g++
-CPP=g++-4.2
+CPP=g++
 CPPFLAGS=-O3 -fopenmp       # Use this for gcc >= 4.2
 #CPPFLAGS=-O3               # Use this for gcc <  4.2
 
