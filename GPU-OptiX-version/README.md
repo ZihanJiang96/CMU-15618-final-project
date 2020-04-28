@@ -8,6 +8,15 @@ Developed and tested on GHC machine with
 
 This code is based on this git repo [weeker_raytracer](https://github.com/idcrook/weeker_raytracer)
 
+## CUDA Config
+
+In `~/.bashrc`, add the following lines, then `source ~/.bashrc`:
+
+``` bash
+export PATH=/usr/local/depot/cuda/bin:${PATH}
+export LD_LIBRARY_PATH=/usr/local/depot/cuda/lib64/:${LD_LIBRARY_PATH}
+```
+
 ## OptiX install
 
 The Optix 6.5 SDK is installed at
