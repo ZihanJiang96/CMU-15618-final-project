@@ -39,6 +39,7 @@ First update the OptiX installation path in `src/CMakeLists.txt`, then
 ``` bash
 mkdir build
 cd build
+cmake ../src
 make
 ```
 
