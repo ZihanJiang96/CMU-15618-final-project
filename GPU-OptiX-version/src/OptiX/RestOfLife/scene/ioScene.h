@@ -452,7 +452,7 @@ public:
 
         // medium glass sphere
         geometryList.push_back(new ioSphere(140.f, 90.f, 190.f, 90.f));
-        materialList.push_back(new ioDielectricMaterial(1.5f));
+        materialList.push_back(new ioDielectricMaterial(1.4f));
 
        	geometryList.push_back(new ioSphere(410.f, 90.f, 340.f, 90.f));
         materialList.push_back(new ioMetalMaterial(new ioConstantTexture(make_float3(0.7f, 0.6f, 0.5f)), 0.0f)); 
