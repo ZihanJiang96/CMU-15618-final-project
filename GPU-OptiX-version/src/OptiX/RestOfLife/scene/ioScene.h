@@ -451,10 +451,13 @@ public:
         // materialList.push_back(new ioDielectricMaterial(1.5f));
 
         // medium glass sphere
-        geometryList.push_back(new ioSphere(190.f, 90.f, 190.f, 90.f));
+        geometryList.push_back(new ioSphere(140.f, 90.f, 190.f, 90.f));
         materialList.push_back(new ioDielectricMaterial(1.5f));
 
-        // boxes
+       	geometryList.push_back(new ioSphere(410.f, 90.f, 340.f, 90.f));
+        materialList.push_back(new ioMetalMaterial(new ioConstantTexture(make_float3(0.7f, 0.6f, 0.5f)), 0.0f)); 
+		
+	// boxes
         // const float z1Theta = -15.5f * (CUDART_PI_F/180.f);
         // float3 b1size = make_float3(165.f, 330.f,   165.f);
         // float3 b1tr = make_float3(265.f - (0.40f)*fabs(cosf(z1Theta))*b1size.x, fabs(sinf(z1Theta))*b1size.x, 255.f + (0.5f)*fabs(cosf(z1Theta))*b1size.x);
