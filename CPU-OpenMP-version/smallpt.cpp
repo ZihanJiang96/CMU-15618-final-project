@@ -1,6 +1,7 @@
 #include <math.h>   // smallpt, a Path Tracer by Kevin Beason, 2008
 #include <stdlib.h> // Make : g++ -O3 -fopenmp smallpt.cpp -o smallpt
 #include <stdio.h>  //        Remove "-fopenmp" for g++ version < 4.2
+#include "random.h"
 struct Vec {        // Usage: time ./smallpt 5000 && xv image.ppm
   double x, y, z;                  // position, also color (r,g,b)
   Vec(double x_=0, double y_=0, double z_=0){ x=x_; y=y_; z=z_; }
@@ -28,21 +29,7 @@ struct Sphere {
   }
 };
 Vec Cen(50,40.8,-860);
-Sphere spheres[] = {//Scene: radius, position, emission, color, material
-   Sphere(1560, Vec(0,5000,3000), Vec(1,.9,.8)*1.2e1*1.56*2,Vec(), DIFF), // sun
-   //Sphere(1560, Vec(1,0,2)*3500,Vec(1,.5,.05)*4.8e1*1.56*2, Vec(),  DIFF), // horizon sun2
-//   Sphere(10000,Cen+Vec(0,0,-200), Vec(0.0627, 0.188, 0.569)*6e-2*8, Vec(.7,.7,1)*.25,  DIFF), // sky
-   //Sphere(10000,Cen+Vec(0,0,-200), Vec(0.00063842, 0.02001478, 0.28923243)*6e-2*8, Vec(0.01,0.01,0.01),  DIFF), // sky
-//Sphere(10000,Cen+Vec(0,0,-20000), Vec(), Vec(100,100,100),  DIFF), // sky
-  Sphere(100000, Vec(50, -100000, 0),  Vec(),Vec(0.5f,0.5f,0.5f),DIFF), // grnd
-  //Sphere(110000, Vec(50, -110048.5, 0),  Vec(.9,.5,.05)*4,Vec(),DIFF),// horizon brightener
-  //Sphere(4e4, Vec(50, -4e4-30, -3000),  Vec(),Vec(.2,.2,.2),DIFF),// mountains
-//  Sphere(3.99e4, Vec(50, -3.99e4+20.045, -3000),  Vec(),Vec(.7,.7,.7),DIFF),// mountains snow
-
-   Sphere(26.5,Vec(22,26.5,42),   Vec(),Vec(1,1,1)*.596, DIFF), // white Mirr
-   Sphere(13,Vec(75,13,82),   Vec(),Vec(.96,.96,.96)*.96, REFR),// Glas
-  Sphere(22,Vec(87,22,24),   Vec(),Vec(.6,.6,.6)*.696, REFR)    // Glas2
-};
+Sphere spheres[489];
 inline double clamp(double x){ return x<0 ? 0 : x>1 ? 1 : x; }
 inline int toInt(double x){ return int(pow(clamp(x),1/2.2)*255+.5); }
 inline bool intersect(const Ray &r, double &t, int &id){
@@ -50,6 +37,86 @@ inline bool intersect(const Ray &r, double &t, int &id){
   for(int i=int(n);i--;) if((d=spheres[i].intersect(r))&&d<t){t=d;id=i;}
   return t<inf;
 }
+void construct_scene(){
+//Scene: radius, position, emission, color, material
+   spheres[0] = Sphere(1560, Vec(0,5000,3000), Vec(1,.9,.8)*1.2e1*1.56*2,Vec(), DIFF); // sun
+   //Sphere(1560, Vec(1,0,2)*3500,Vec(1,.5,.05)*4.8e1*1.56*2, Vec(),  DIFF), // horizon sun2
+//   Sphere(10000,Cen+Vec(0,0,-200), Vec(0.0627, 0.188, 0.569)*6e-2*8, Vec(.7,.7,1)*.25,  DIFF), // sky
+   //Sphere(10000,Cen+Vec(0,0,-200), Vec(0.00063842, 0.02001478, 0.28923243)*6e-2*8, Vec(0.01,0.01,0.01),  DIFF), // sky
+//Sphere(10000,Cen+Vec(0,0,-20000), Vec(), Vec(100,100,100),  DIFF), // sky
+  //spheres[1] = Sphere(100000, Vec(50, -100000, 0),  Vec(),Vec(0.5f,0.5f,0.5f),DIFF); // grnd
+  spheres[1] = Sphere(1000, Vec(0, -1000, 0),  Vec(),Vec(0.5f,0.5f,0.5f),DIFF); // grnd
+  //Sphere(110000, Vec(50, -110048.5, 0),  Vec(.9,.5,.05)*4,Vec(),DIFF),// horizon brightener
+  //Sphere(4e4, Vec(50, -4e4-30, -3000),  Vec(),Vec(.2,.2,.2),DIFF),// mountains
+//  Sphere(3.99e4, Vec(50, -3.99e4+20.045, -3000),  Vec(),Vec(.7,.7,.7),DIFF),// mountains snow
+
+   // middle sphere
+  //spheres[2] = Sphere(26.5,Vec(22,26.5,42),   Vec(),Vec(1,1,1)*.596, DIFF); // white Mirr
+  //spheres[3] = Sphere(13,Vec(75,13,82),   Vec(),Vec(.96,.96,.96)*.96, REFR);// Glas
+  //spheres[4] = Sphere(22,Vec(87,22,24),   Vec(),Vec(.6,.6,.6)*.696, REFR);    // Glas2
+  spheres[2] = Sphere(1.0f,Vec(0.0f, 1.0f, 0.0),   Vec(),Vec(1,1,1)*.596, DIFF); // white Mirr
+  spheres[3] = Sphere(1.0f,Vec(-4.0f, 1.0f, 0.0),   Vec(),Vec(.96,.96,.96)*.96, REFR);// Glas
+  spheres[4] = Sphere(1.0f,Vec(4.0f, 1.0f, 0.0),   Vec(),Vec(.6,.6,.6)*.696, REFR);    // Glas2
+  int idx= 5;
+  // Small Spheres
+        uint32_t seed = 0x6314759;
+        for (int a = -11; a < 11; a++)
+        {
+            for (int b = -11; b < 11; b++)
+            {
+                float chooseMat = randf(seed);
+                float x = a + 0.8f*randf(seed);
+                float y = 0.2f;
+                float z = b + 0.9f*randf(seed);
+                float z_squared = (z)*(z);
+                float dist = sqrtf(
+                    (x-4.0f)*(x-4.0f) +
+                    //(y-0.2f)*(y-0.2f) +
+                    z_squared
+                    );
+
+                // keep out area near medium spheres
+                if ((dist > 0.9f) ||
+                    ((z_squared > 0.7f) && ((x*x - 16.0f) > -2.f)))
+                {
+                    if (chooseMat < 0.70f)
+                    {
+                        spheres[idx] = Sphere(0.2f,Vec(x, y, z),   Vec(),Vec(1,1,1)*.596, DIFF); 
+                        //geometryList.push_back(new ioSphere(x,y,z, 0.2f));
+                        /*materialList.push_back(new ioLambertianMaterial(
+                                                   new ioConstantTexture(make_float3(randf(seed), randf(seed), randf(seed))
+                                                       )));*/
+                    }
+                    else if (chooseMat < 0.85f)
+                    {
+                        spheres[idx] = Sphere(0.2f,Vec(x, y, z),   Vec(),Vec(1,1,1)*.596, REFR); 
+                        /*geometryList.push_back(new ioSphere(x,y,z, 0.2f));
+                        materialList.push_back(new ioMetalMaterial(
+                                                   new ioConstantTexture(make_float3(0.5f*(1.0f-randf(seed)),
+                                                                                     0.5f*(1.0f-randf(seed)),
+                                                                                     0.5f*(1.0f-randf(seed)))),
+                                                   0.5f*randf(seed)));*/
+                    }
+                    else if (chooseMat < 0.93f)
+                    {
+                        spheres[idx] = Sphere(0.2f,Vec(x, y, z),   Vec(),Vec(1,1,1)*.596, DIFF); 
+                        //geometryList.push_back(new ioSphere(x,y,z, 0.2f));
+                        //materialList.push_back(new ioDielectricMaterial(1.5f));
+                    }
+                    else
+                    {
+                        /*geometryList.push_back(new ioSphere(x,y,z, 0.2f));
+                        materialList.push_back(new ioDielectricMaterial(1.5f));
+                        geometryList.push_back(new ioSphere(x,y,z, -(0.2f-0.007f)));
+                        materialList.push_back(new ioDielectricMaterial(1.5f));*/
+                        spheres[idx] = Sphere(0.2f,Vec(x, y, z),   Vec(),Vec(1,1,1)*.596, DIFF); 
+                    }
+                }
+                idx++;
+            }
+        }
+}
+
 Vec radiance(const Ray &r, int depth, unsigned short *Xi){
   double t;                               // distance to intersection
   int id=0;                               // id of intersected object
@@ -79,6 +146,7 @@ Vec radiance(const Ray &r, int depth, unsigned short *Xi){
 }
 int main(int argc, char *argv[]){
   int w=1024, h=768, samps = argc==2 ? atoi(argv[1])/4 : 1; // # samples
+  construct_scene();
   Ray cam(Vec(50,52,295.6), Vec(0,-0.042612,-1).norm()); // cam pos, dir
   Vec cx=Vec(w*.5135/h), cy=(cx%cam.d).norm()*.5135, r, *c=new Vec[w*h];
 #pragma omp parallel for schedule(dynamic, 1) private(r)       // OpenMP
