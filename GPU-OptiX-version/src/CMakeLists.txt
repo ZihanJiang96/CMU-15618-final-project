@@ -3,7 +3,7 @@ cmake_minimum_required ( VERSION 2.8 )
 project ( CMU-15618-final-project )
 
 # set to match your path
-set(OptiX_INSTALL_DIR "/afs/andrew.cmu.edu/usr19/zihanj/private/15618/NVIDIA-OptiX-SDK-6.5.0-linux64"
+set(OptiX_INSTALL_DIR "/afs/andrew.cmu.edu/usr19/jinqingx/private/15618/CMU-15618-final-project/GPU-BVH-version/NVIDIA-OptiX-SDK-6.5.0-linux64"
     CACHE PATH "Path to OptiX installed location.")
 
 # enable c++11

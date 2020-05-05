@@ -1,0 +1,10 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/afs/andrew.cmu.edu/usr19/jinqingx/private/15618/CMU-15618-final-project/GPU-OptiX-version/src/build/OptiX/InOneWeekend/cuda_compile_ptx_generated_drawColorGradient.cu.ptx_embedded.c
+

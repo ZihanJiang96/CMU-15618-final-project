@@ -288,7 +288,7 @@ public:
         ioTexture *noise4 = new ioNoiseTexture(4.f);
         ioTexture *noise1 = new ioNoiseTexture(1.f);
 
-        ioTexture *earthGlobeImage = new ioImageTexture("assets/earthmap.jpg");
+        //ioTexture *earthGlobeImage = new ioImageTexture("assets/earthmap.jpg");
 
         ioTexture* light4 =  new ioConstantTexture(make_float3(4.f, 4.f, 4.f));
         ioTexture* light8 =  new ioConstantTexture(make_float3(8.f, 8.f, 8.f));
@@ -298,7 +298,7 @@ public:
         // Big Sphere
         geometryList.push_back(new ioSphere(0.0f, -1000.0f, 0.0, 1000.0f));
         //materialList.push_back(new ioLambertianMaterial(noise4));
-        materialList.push_back(new ioLambertianMaterial(noise1));
+        materialList.push_back(new ioLambertianMaterial(reallyDarkGrey));
         //materialList.push_back(new ioMetalMaterial(noise1, 0.08f));
         //materialList.push_back(new ioLambertianMaterial(checkered));
 
@@ -307,17 +307,19 @@ public:
         geometryList.push_back(new ioSphere(0.0f, 1.0f, 0.0, 1.0f));
         geometryList.push_back(new ioSphere(4.0f, 1.0f, 0.0, 1.0f));
 
+        //materialList.push_back(new ioLambertianMaterial(constantGrey));
         materialList.push_back(new ioMetalMaterial(constantGrey, 0.4f));
-        materialList.push_back(new ioLambertianMaterial(earthGlobeImage));
+        materialList.push_back(new ioLambertianMaterial(constantGrey));
         materialList.push_back(new ioDielectricMaterial(1.5f));
-
+        //materialList.push_back(new ioLambertianMaterial(constantGrey));
+        //geometryList.push_back(new ioSphere(3.0f, 5.0f, -2.0f, 10.0f));
         geometryList.push_back(new ioAARect(3.f, 5.f, 2.3f, 3.f+3.f, -2.0f, false, Z_AXIS));
         materialList.push_back(new ioDiffuseLightMaterial(light8));
-
+       //geometryList.push_back(new ioSphere(0.0f, 1.0f, 0.0, 1.0f));
         geometryList.push_back(new ioAARect(3.f, 5.f, 2.3f, 3.f+3.f, -2.002f, true, Z_AXIS));
         materialList.push_back(new ioDiffuseLightMaterial(light8));
-
-        // geometryList.push_back(new ioAARect(-6.f, -1.f, -2.f, 2.f, 10.f, true, Y_AXIS));
+        //geometryList.push_back(new ioSphere(0.0f, 1.0f, 0.0, 1.0f));
+         //geometryList.push_back(new ioAARect(-6.f, -1.f, -2.f, 2.f, 10.f, true, Y_AXIS));
         // materialList.push_back(new ioDiffuseLightMaterial(light8));
 
         // Small Spheres
