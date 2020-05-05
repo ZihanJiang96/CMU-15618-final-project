@@ -44,19 +44,19 @@ void construct_scene(){
 //   Sphere(10000,Cen+Vec(0,0,-200), Vec(0.0627, 0.188, 0.569)*6e-2*8, Vec(.7,.7,1)*.25,  DIFF), // sky
    //Sphere(10000,Cen+Vec(0,0,-200), Vec(0.00063842, 0.02001478, 0.28923243)*6e-2*8, Vec(0.01,0.01,0.01),  DIFF), // sky
 //Sphere(10000,Cen+Vec(0,0,-20000), Vec(), Vec(100,100,100),  DIFF), // sky
-  //spheres[1] = Sphere(100000, Vec(50, -100000, 0),  Vec(),Vec(0.5f,0.5f,0.5f),DIFF); // grnd
-  spheres[1] = Sphere(1000, Vec(0, -1000, 0),  Vec(),Vec(0.5f,0.5f,0.5f),DIFF); // grnd
+  spheres[1] = Sphere(100000, Vec(50, -100000, 0),  Vec(),Vec(0.5f,0.5f,0.5f),DIFF); // grnd
+  //spheres[1] = Sphere(1000, Vec(0, -1000, 0),  Vec(),Vec(0.5f,0.5f,0.5f),DIFF); // grnd
   //Sphere(110000, Vec(50, -110048.5, 0),  Vec(.9,.5,.05)*4,Vec(),DIFF),// horizon brightener
   //Sphere(4e4, Vec(50, -4e4-30, -3000),  Vec(),Vec(.2,.2,.2),DIFF),// mountains
 //  Sphere(3.99e4, Vec(50, -3.99e4+20.045, -3000),  Vec(),Vec(.7,.7,.7),DIFF),// mountains snow
 
    // middle sphere
-  //spheres[2] = Sphere(26.5,Vec(22,26.5,42),   Vec(),Vec(1,1,1)*.596, DIFF); // white Mirr
-  //spheres[3] = Sphere(13,Vec(75,13,82),   Vec(),Vec(.96,.96,.96)*.96, REFR);// Glas
-  //spheres[4] = Sphere(22,Vec(87,22,24),   Vec(),Vec(.6,.6,.6)*.696, REFR);    // Glas2
-  spheres[2] = Sphere(1.0f,Vec(0.0f, 1.0f, 0.0),   Vec(),Vec(1,1,1)*.596, DIFF); // white Mirr
-  spheres[3] = Sphere(1.0f,Vec(-4.0f, 1.0f, 0.0),   Vec(),Vec(.96,.96,.96)*.96, REFR);// Glas
-  spheres[4] = Sphere(1.0f,Vec(4.0f, 1.0f, 0.0),   Vec(),Vec(.6,.6,.6)*.696, REFR);    // Glas2
+  spheres[2] = Sphere(26.5,Vec(22,26.5,42),   Vec(),Vec(1,1,1)*.596, DIFF); // white Mirr
+  spheres[3] = Sphere(13,Vec(75,13,82),   Vec(),Vec(.96,.96,.96)*.96, REFR);// Glas
+  spheres[4] = Sphere(22,Vec(87,22,24),   Vec(),Vec(.6,.6,.6)*.696, REFR);    // Glas2
+  //spheres[2] = Sphere(1.0f,Vec(0.0f, 1.0f, 0.0),   Vec(),Vec(1,1,1)*.596, DIFF); // white Mirr
+  //spheres[3] = Sphere(1.0f,Vec(-4.0f, 1.0f, 0.0),   Vec(),Vec(.96,.96,.96)*.96, REFR);// Glas
+  //spheres[4] = Sphere(1.0f,Vec(4.0f, 1.0f, 0.0),   Vec(),Vec(.6,.6,.6)*.696, REFR);    // Glas2
   int idx= 5;
   // Small Spheres
         uint32_t seed = 0x6314759;
@@ -65,19 +65,19 @@ void construct_scene(){
             for (int b = -11; b < 11; b++)
             {
                 float chooseMat = randf(seed);
-                float x = a + 0.8f*randf(seed);
-                float y = 0.2f;
-                float z = b + 0.9f*randf(seed);
+                float x = (a + 0.8f*randf(seed))*10;
+                float y = 20;
+                float z = (b + 0.9f*randf(seed))*10;
                 float z_squared = (z)*(z);
                 float dist = sqrtf(
-                    (x-4.0f)*(x-4.0f) +
+                    (x-13.0f)*(x-13.0f) +
                     //(y-0.2f)*(y-0.2f) +
-                    z_squared
+                    (z-82.0f)*(z-82.0f)
                     );
 
                 // keep out area near medium spheres
-                if ((dist > 0.9f) ||
-                    ((z_squared > 0.7f) && ((x*x - 16.0f) > -2.f)))
+                if ((dist > 10.0f) ||
+                    ((z*z - 82*82 > 10.0f) && ((x*x - 13.0f*13.0f) > -10.f)))
                 {
                     if (chooseMat < 0.70f)
                     {
