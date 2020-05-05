@@ -41,7 +41,7 @@ inline bool intersect(const Ray &r, double &t, int &id){
 void construct_scene(){
 //Scene: radius, position, emission, color, material
    //Sphere(2.5e3,   Vec(.82,.92,-2)*1e4,    Vec(1,1,1)*.8e2,     Vec(), DIFF), // moon
-   spheres[0] = Sphere(500, Vec(0,5000,6000), Vec(1,.9,.8)*1.2e1*1.56*2,Vec(), DIFF); // sun
+   spheres[0] = Sphere(500, Vec(0,3300,2300), Vec(1,.9,.8)*1.2e1*1.56*2,Vec(), DIFF); // sun
    //Sphere(1560, Vec(1,0,2)*3500,Vec(1,.5,.05)*4.8e1*1.56*2, Vec(),  DIFF), // horizon sun2
 //   Sphere(10000,Cen+Vec(0,0,-200), Vec(0.0627, 0.188, 0.569)*6e-2*8, Vec(.7,.7,1)*.25,  DIFF), // sky
    //Sphere(10000,Cen+Vec(0,0,-200), Vec(0.00063842, 0.02001478, 0.28923243)*6e-2*8, Vec(0.01,0.01,0.01),  DIFF), // sky
@@ -54,14 +54,14 @@ void construct_scene(){
 
    // middle sphere
   spheres[2] = Sphere(26.5,Vec(77,26.5,85),   Vec(),Vec(0.3f,0.1f,0.1f), DIFF); // white Mirr
-  spheres[3] = Sphere(22,Vec(35,13,50),   Vec(),Vec(.96,.96,.96)*.96, REFR);// Glas
-  spheres[4] = Sphere(13,Vec(25,22,25),   Vec(),Vec(.6,.6,.6)*.696, REFR);    // Glas2
+  spheres[3] = Sphere(10,Vec(35,22,70),   Vec(),Vec(.96,.96,.96)*.96, REFR);// Glas
+  spheres[4] = Sphere(1,Vec(25,22,40),   Vec(),Vec(.6,.6,.6)*.696, REFR);    // Glas2
   //spheres[2] = Sphere(1.0f,Vec(0.0f, 1.0f, 0.0),   Vec(),Vec(1,1,1)*.596, DIFF); // white Mirr
   //spheres[3] = Sphere(1.0f,Vec(-4.0f, 1.0f, 0.0),   Vec(),Vec(.96,.96,.96)*.96, REFR);// Glas
   //spheres[4] = Sphere(1.0f,Vec(4.0f, 1.0f, 0.0),   Vec(),Vec(.6,.6,.6)*.696, REFR);    // Glas2
   int idx= 5;
   // Small Spheres
-        uint32_t seed = 0x6314759;
+        /*uint32_t seed = 0x6314759;
         for (int a = -11; a < 11; a++)
         {
             for (int b = -11; b < 11; b++)
@@ -104,7 +104,7 @@ void construct_scene(){
                 }
                 idx++;
             }
-        }
+        }*/
 }
 
 Vec radiance(const Ray &r, int depth, unsigned short *Xi){
