@@ -27,6 +27,7 @@ struct Sphere {
     return (t=b-det)>eps ? t : ((t=b+det)>eps ? t : 0);
   }
 };
+Vec Cen(50,40.8,-860);
 Sphere spheres[] = {//Scene: radius, position, emission, color, material
    Sphere(1600, Vec(1,0,2)*3000, Vec(1,.9,.8)*1.2e1*1.56*2,Vec(), DIFF), // sun
    Sphere(1560, Vec(1,0,2)*3500,Vec(1,.5,.05)*4.8e1*1.56*2, Vec(),  DIFF), // horizon sun2
