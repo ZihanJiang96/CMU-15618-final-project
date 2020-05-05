@@ -288,7 +288,7 @@ public:
         ioTexture *noise4 = new ioNoiseTexture(4.f);
         ioTexture *noise1 = new ioNoiseTexture(1.f);
 
-        //ioTexture *earthGlobeImage = new ioImageTexture("assets/earthmap.jpg");
+        ioTexture *earthGlobeImage = new ioImageTexture("assets/earthmap.jpg");
 
         ioTexture* light4 =  new ioConstantTexture(make_float3(4.f, 4.f, 4.f));
         ioTexture* light8 =  new ioConstantTexture(make_float3(8.f, 8.f, 8.f));
@@ -309,9 +309,9 @@ public:
 
         //materialList.push_back(new ioLambertianMaterial(constantGrey));
         materialList.push_back(new ioMetalMaterial(constantGrey, 0.4f));
-        materialList.push_back(new ioLambertianMaterial(constantGrey));
-        materialList.push_back(new ioDielectricMaterial(1.5f));
         //materialList.push_back(new ioLambertianMaterial(constantGrey));
+        materialList.push_back(new ioDielectricMaterial(1.5f));
+        materialList.push_back(new ioLambertianMaterial(constantGrey));
         //geometryList.push_back(new ioSphere(3.0f, 5.0f, -2.0f, 10.0f));
         geometryList.push_back(new ioAARect(3.f, 5.f, 2.3f, 3.f+3.f, -2.0f, false, Z_AXIS));
         materialList.push_back(new ioDiffuseLightMaterial(light8));
