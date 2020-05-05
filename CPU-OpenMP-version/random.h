@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-
+int N = 1000;
 uint32_t tea(uint32_t s0, uint32_t s1)
 {
     uint32_t t = 0;
