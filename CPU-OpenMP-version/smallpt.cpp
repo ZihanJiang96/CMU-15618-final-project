@@ -33,13 +33,13 @@ Sphere spheres[] = {//Scene: radius, position, emission, color, material
    //Sphere(1560, Vec(1,0,2)*3500,Vec(1,.5,.05)*4.8e1*1.56*2, Vec(),  DIFF), // horizon sun2
 //   Sphere(10000,Cen+Vec(0,0,-200), Vec(0.0627, 0.188, 0.569)*6e-2*8, Vec(.7,.7,1)*.25,  DIFF), // sky
    //Sphere(10000,Cen+Vec(0,0,-200), Vec(0.00063842, 0.02001478, 0.28923243)*6e-2*8, Vec(0.01,0.01,0.01),  DIFF), // sky
-Sphere(10000,Cen+Vec(0,0,-20000), Vec(), Vec(100,100,100),  DIFF), // sky
+//Sphere(10000,Cen+Vec(0,0,-20000), Vec(), Vec(100,100,100),  DIFF), // sky
   Sphere(100000, Vec(50, -100000, 0),  Vec(),Vec(0.5f,0.5f,0.5f),DIFF), // grnd
   //Sphere(110000, Vec(50, -110048.5, 0),  Vec(.9,.5,.05)*4,Vec(),DIFF),// horizon brightener
   //Sphere(4e4, Vec(50, -4e4-30, -3000),  Vec(),Vec(.2,.2,.2),DIFF),// mountains
 //  Sphere(3.99e4, Vec(50, -3.99e4+20.045, -3000),  Vec(),Vec(.7,.7,.7),DIFF),// mountains snow
 
-   Sphere(26.5,Vec(22,26.5,42),   Vec(),Vec(1,1,1)*.596, SPEC), // white Mirr
+   Sphere(26.5,Vec(22,26.5,42),   Vec(),Vec(1,1,1)*.596, DIFF), // white Mirr
    Sphere(13,Vec(75,13,82),   Vec(),Vec(.96,.96,.96)*.96, REFR),// Glas
   Sphere(22,Vec(87,22,24),   Vec(),Vec(.6,.6,.6)*.696, REFR)    // Glas2
 };
