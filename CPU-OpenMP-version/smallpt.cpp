@@ -40,21 +40,22 @@ inline bool intersect(const Ray &r, double &t, int &id){
 }
 void construct_scene(){
 //Scene: radius, position, emission, color, material
-   spheres[0] = Sphere(1560, Vec(0,5000,3000), Vec(1,.9,.8)*1.2e1*1.56*2,Vec(), DIFF); // sun
+   //Sphere(2.5e3,   Vec(.82,.92,-2)*1e4,    Vec(1,1,1)*.8e2,     Vec(), DIFF), // moon
+   spheres[0] = Sphere(500, Vec(0,5000,6000), Vec(1,.9,.8)*1.2e1*1.56*2,Vec(), DIFF); // sun
    //Sphere(1560, Vec(1,0,2)*3500,Vec(1,.5,.05)*4.8e1*1.56*2, Vec(),  DIFF), // horizon sun2
 //   Sphere(10000,Cen+Vec(0,0,-200), Vec(0.0627, 0.188, 0.569)*6e-2*8, Vec(.7,.7,1)*.25,  DIFF), // sky
    //Sphere(10000,Cen+Vec(0,0,-200), Vec(0.00063842, 0.02001478, 0.28923243)*6e-2*8, Vec(0.01,0.01,0.01),  DIFF), // sky
 //Sphere(10000,Cen+Vec(0,0,-20000), Vec(), Vec(100,100,100),  DIFF), // sky
-  spheres[1] = Sphere(100000, Vec(50, -100000, 0),  Vec(),Vec(0.5f,0.5f,0.5f),DIFF); // grnd
+  spheres[1] = Sphere(100000, Vec(50, 100000, 0),  Vec(),Vec(0.1f,0.1f,0.1f),DIFF); // grnd
   //spheres[1] = Sphere(1000, Vec(0, -1000, 0),  Vec(),Vec(0.5f,0.5f,0.5f),DIFF); // grnd
   //Sphere(110000, Vec(50, -110048.5, 0),  Vec(.9,.5,.05)*4,Vec(),DIFF),// horizon brightener
   //Sphere(4e4, Vec(50, -4e4-30, -3000),  Vec(),Vec(.2,.2,.2),DIFF),// mountains
 //  Sphere(3.99e4, Vec(50, -3.99e4+20.045, -3000),  Vec(),Vec(.7,.7,.7),DIFF),// mountains snow
 
    // middle sphere
-  spheres[2] = Sphere(26.5,Vec(22,26.5,42),   Vec(),Vec(1,1,1)*.596, DIFF); // white Mirr
-  spheres[3] = Sphere(13,Vec(75,13,82),   Vec(),Vec(.96,.96,.96)*.96, REFR);// Glas
-  spheres[4] = Sphere(22,Vec(87,22,24),   Vec(),Vec(.6,.6,.6)*.696, REFR);    // Glas2
+  spheres[2] = Sphere(26.5,Vec(77,26.5,85),   Vec(),Vec(0.3f,0.1f,0.1f), DIFF); // white Mirr
+  spheres[3] = Sphere(22,Vec(35,13,50),   Vec(),Vec(.96,.96,.96)*.96, REFR);// Glas
+  spheres[4] = Sphere(13,Vec(25,22,25),   Vec(),Vec(.6,.6,.6)*.696, REFR);    // Glas2
   //spheres[2] = Sphere(1.0f,Vec(0.0f, 1.0f, 0.0),   Vec(),Vec(1,1,1)*.596, DIFF); // white Mirr
   //spheres[3] = Sphere(1.0f,Vec(-4.0f, 1.0f, 0.0),   Vec(),Vec(.96,.96,.96)*.96, REFR);// Glas
   //spheres[4] = Sphere(1.0f,Vec(4.0f, 1.0f, 0.0),   Vec(),Vec(.6,.6,.6)*.696, REFR);    // Glas2
@@ -66,10 +67,13 @@ void construct_scene(){
             for (int b = -11; b < 11; b++)
             {
                 float chooseMat = randf(seed);
-                float x = (a + 0.8f*randf(seed))*10;
-                float y = 20;
-                float z = (b + 0.9f*randf(seed))*10;
+                float x = (a + 0.8f*randf(seed))*20;
+                float y = 6;
+                float z = (b + 0.9f*randf(seed))*20;
                 float z_squared = (z)*(z);
+                float r= ((float)rand())/RAND_MAX;
+                float g = ((float)rand())/RAND_MAX;
+                float blue =((float)rand())/RAND_MAX;
                 float dist = sqrtf(
                     (x-13.0f)*(x-13.0f) +
                     //(y-0.2f)*(y-0.2f) +
@@ -82,35 +86,20 @@ void construct_scene(){
                 {
                     if (chooseMat < 0.70f)
                     {
-                        spheres[idx] = Sphere(0.2f,Vec(x, y, z),   Vec(),Vec(1,1,1)*.596, DIFF); 
+                        spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(r,g,blue), DIFF); 
                         //geometryList.push_back(new ioSphere(x,y,z, 0.2f));
-                        /*materialList.push_back(new ioLambertianMaterial(
-                                                   new ioConstantTexture(make_float3(randf(seed), randf(seed), randf(seed))
-                                                       )));*/
                     }
                     else if (chooseMat < 0.85f)
                     {
-                        spheres[idx] = Sphere(0.2f,Vec(x, y, z),   Vec(),Vec(1,1,1)*.596, REFR); 
-                        /*geometryList.push_back(new ioSphere(x,y,z, 0.2f));
-                        materialList.push_back(new ioMetalMaterial(
-                                                   new ioConstantTexture(make_float3(0.5f*(1.0f-randf(seed)),
-                                                                                     0.5f*(1.0f-randf(seed)),
-                                                                                     0.5f*(1.0f-randf(seed)))),
-                                                   0.5f*randf(seed)));*/
+                        spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(.96,.96,.96)*.9, REFR); 
                     }
                     else if (chooseMat < 0.93f)
                     {
-                        spheres[idx] = Sphere(0.2f,Vec(x, y, z),   Vec(),Vec(1,1,1)*.596, DIFF); 
-                        //geometryList.push_back(new ioSphere(x,y,z, 0.2f));
-                        //materialList.push_back(new ioDielectricMaterial(1.5f));
+                        spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(.96,.96,.96)*.9, SPEC); 
                     }
                     else
                     {
-                        /*geometryList.push_back(new ioSphere(x,y,z, 0.2f));
-                        materialList.push_back(new ioDielectricMaterial(1.5f));
-                        geometryList.push_back(new ioSphere(x,y,z, -(0.2f-0.007f)));
-                        materialList.push_back(new ioDielectricMaterial(1.5f));*/
-                        spheres[idx] = Sphere(0.2f,Vec(x, y, z),   Vec(),Vec(1,1,1)*.596, DIFF); 
+                        spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(r,g,blue), DIFF); 
                     }
                 }
                 idx++;
