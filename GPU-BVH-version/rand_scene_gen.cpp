@@ -1,6 +1,9 @@
 #include <iostream>
 #include <random>
 #include "random.h"
+#include <stdlib.h> // Make : g++ -O3 -fopenmp smallpt.cpp -o smallpt
+#include <stdio.h>
+#include <math.h> 
 using namespace std;
 
 #define N 1000
@@ -9,8 +12,8 @@ using namespace std;
 
 int main() {
     freopen("scene","w",stdout);
-    std::default_random_engine generator;
-    std::uniform_int_distribution<int> distribution(LEFT, RIGHT);
+    //std::default_random_engine generator;
+    //std::uniform_int_distribution<int> distribution(LEFT, RIGHT);
 
     cout << 100 << " " << 489 << endl;
 
