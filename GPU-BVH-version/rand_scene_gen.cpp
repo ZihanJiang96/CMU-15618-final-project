@@ -30,7 +30,7 @@ int main() {
             {
                 float chooseMat = randf(seed);
                 float x = (a + 0.8f*randf(seed))*20;
-                float y = 6;
+                float y = 6.00;
                 float z = (b + 0.9f*randf(seed))*20;
                 float z_squared = (z)*(z);
                 float r= ((float)rand())/RAND_MAX;
@@ -53,7 +53,7 @@ int main() {
                     {
                         r_array[count] = r;
                         g_array[count] = g;
-                        b_array[count] = b;
+                        b_array[count] = blue;
                         method_array[count] = 1;
                         //cout << 5 << x << y << z << 0 << 0 << 0 << r << g << blue << 1 << endl;
                         //spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(r,g,blue), DIFF); 
@@ -64,7 +64,7 @@ int main() {
                         r_array[count] = 0.96*0.9;
                         g_array[count] = 0.96*0.9;
                         b_array[count] = 0.96*0.9;
-                        method_array[count] = 2;
+                        method_array[count] = 3;
                         //cout << 5 << x << y << z << 0 << 0 << 0 << 0.96*0.9 << 0.96*0.9 << 0.96*0.9 << 2 << endl;
                         //spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(.96,.96,.96)*.9, REFR); 
                     }
@@ -73,7 +73,7 @@ int main() {
                         r_array[count] = 0.96*0.9;
                         g_array[count] = 0.96*0.9;
                         b_array[count] = 0.96*0.9;
-                        method_array[count] = 3;
+                        method_array[count] = 2;
                         //cout << 5 << x << y << z << 0 << 0 << 0 << 0.96*0.9 << 0.96*0.9 << 0.96*0.9 << 3 << endl;
                         //spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(.96,.96,.96)*.9, SPEC); 
                     }
@@ -81,7 +81,7 @@ int main() {
                     {
                          r_array[count] = r;
                         g_array[count] = g;
-                        b_array[count] = b;
+                        b_array[count] = blue;
                         method_array[count] = 1;
                         //cout << 5 << x << y << z << 0 << 0 << 0 << r << g << blue << 1 << endl;
                         //spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(r,g,blue), DIFF); 
@@ -92,14 +92,14 @@ int main() {
         }
 
 
-
+    count = 2;
     cout << 500 << " " << count+5 << endl;
 
     // sun
-    cout << 500 << " " << 0 << " "<< 5000 << " " << 6000 << " " << 1*1.2e1*1.56*2 << " " << 0.9*1.2e1*1.56*2 << " " << 0.8*1.2e1*1.56*2 << " " << 0 << " " << 0 << " " << 0 << " " << 1 << endl;
+    cout << 500 << " " << 0 << " "<< 3300 << " " << 2300 << " " << 1*1.2e1*1.56*2 << " " << 0.9*1.2e1*1.56*2 << " " << 0.8*1.2e1*1.56*2 << " " << 0 << " " << 0 << " " << 0 << " " << 1 << endl;
 
     // ground
-    cout << 100000 << " "  << 50 << " " << 100000 << " " << 0  << " " << 0 << " " << 0 << " " << 0 << " " << 0 << " " << 0.1 << " " << 0.1 << " " << 0.1 << endl;
+    cout << 100000 << " "  << 50 << " " << -100000 << " " << 0  << " " << 0 << " " << 0 << " " << 0  << " " << 0.1 << " " << 0.1 << " " << 0.1 << " " << 1 << endl;
 
     // middle sphere
     cout << 26.5 << " " << 77 << " " << 26.5 << " " << 85 << " " << 0 << " " << 0  << " " << 0  << " " << 0.3 << " " << 0.1 << " " << 0.1 <<  " " << 1 << endl;
@@ -107,7 +107,7 @@ int main() {
     cout << 13 << " " << 25 << " " << 22 << " " << 25 << " " << 0 <<  " " << 0 << " " << 0 << " " << 0.6*0.696 << " " << 0.6*0.696 << " " << 0.6*0.696 <<  " " << 2 << endl;
 
     for(int i=0; i<count; ++i){
-        cout << 5 << " " << x_array[i] << " " << y_array[i] << " " << z_array[i] << " " << 0 <<  " " << 0 <<  " " << 0 <<  " " << r_array[i] <<  " " << g_array[i] << " " <<  b_array[i] << " " << method_array[i] << endl;
+        cout << 5 << " " << x_array[i] << " " << 6.0000 << " " << z_array[i] << " " << 0 <<  " " << 0 <<  " " << 0 <<  " " << r_array[i] <<  " " << g_array[i] << " " <<  b_array[i] << " " << method_array[i] << endl;
     }
 
     

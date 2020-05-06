@@ -95,18 +95,22 @@ void construct_scene(){
                     {
                         spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(r,g,blue), DIFF); 
                         //geometryList.push_back(new ioSphere(x,y,z, 0.2f));
+                        //printf("%f %f %f %f %d %d %d %f %f %f %d\n", 5.0f, x, y, z, 0, 0, 0, r, g, blue, 1);
                     }
                     else if (chooseMat < 0.85f)
                     {
-                        spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(.96,.96,.96)*.9, REFR); 
+                        spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(.96,.96,.96)*.9, REFR);
+                        //printf("%f %f %f %f %d %d %d %f %f %f %d\n", 5.0f, x, y, z, 0, 0, 0, 0.96*0.9, 0.96*0.9, 0.96*0.9, 3); 
                     }
                     else if (chooseMat < 0.93f)
                     {
-                        spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(.96,.96,.96)*.9, SPEC); 
+                        spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(.96,.96,.96)*.9, SPEC);
+                         //printf("%f %f %f %f %d %d %d %f %f %f %d\n", 5.0f, x, y, z, 0, 0, 0, 0.96*0.9, 0.96*0.9, 0.96*0.9,2); 
                     }
                     else
                     {
-                        spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(r,g,blue), DIFF); 
+                        spheres[idx] = Sphere(5.0f,Vec(x, y, z),   Vec(),Vec(r,g,blue), DIFF);
+                         //printf("%f %f %f %f %d %d %d %f %f %f %d\n", 5.0f, x, y, z, 0, 0, 0, r, g, blue, 1); 
                     }
                 }
                 idx++;

@@ -283,6 +283,7 @@ public:
         ioTexture *saddleBrown = new ioConstantTexture(make_float3(139/255.f,  69/255.f,  19/255.f));
         ioTexture *reallyDarkGrey = new ioConstantTexture(make_float3( 9/255.f,  9/255.f,  9/255.f));
         ioTexture *black = new ioConstantTexture(make_float3( 0/255.f,  0/255.f,  0/255.f));
+        ioTexture *red = new ioConstantTexture(make_float3( 0.3*255.f,  0.1*255.f,  0.1*255.f));
 
         ioTexture *checkered = new ioCheckerTexture(reallyDarkGrey, saddleBrown);
         ioTexture *noise4 = new ioNoiseTexture(4.f);

@@ -152,12 +152,17 @@ int main(int argc, char* argv[])
         std::cerr << "INFO: Number of rays sent per pixel: " << Ns << std::endl;
         std::cerr << "INFO: Scene number selected: " << Nscene << std::endl;
     }
+    auto start1 = std::chrono::system_clock::now();
     optixSingleton.createScene(Nscene);
-
+    auto start2 = std::chrono::system_clock::now();
+    auto time_seconds1 = std::chrono::duration<float>(start2 - start1).count();	
+    std::cerr << "INFO: createScene Took " << time_seconds1 << " seconds." << std::endl;
+    auto start3 = std::chrono::system_clock::now(); 
     optixSingleton.renderFrame();
+   
     auto stop = std::chrono::system_clock::now();
-    auto time_seconds = std::chrono::duration<float>(stop - start).count();
-    std::cerr << "INFO: Took " << time_seconds << " seconds." << std::endl;
+    auto time_seconds = std::chrono::duration<float>(stop - start3).count();
+    std::cerr << "INFO: render frame Took " << time_seconds << " seconds." << std::endl;
 
     optixSingleton.printPPM();
 
